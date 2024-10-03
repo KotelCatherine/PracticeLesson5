@@ -20,8 +20,10 @@ import java.util.Scanner;
  */
 public class Main {
     public static void main(String[] args) {
+        System.out.println("Игра \"Поле чудес\"");
         new FieldOfMiracles();
 
+        System.out.println("\n==========================");
         Scanner scanner = new Scanner(System.in);
         System.out.print("Введите размер массива: ");
         int arrayLength = scanner.nextInt();
@@ -35,11 +37,11 @@ public class Main {
         }
 
         int maxNum = arrayNum[0];
-        for (int i = 0; i < arrayNum.length; i++) {
-            sum += arrayNum[i];
+        for (int num : arrayNum) {
+            sum += num;
 
-            if (maxNum < arrayNum[i]) {
-                maxNum = arrayNum[i];
+            if (maxNum < num) {
+                maxNum = num;
             }
         }
 

@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class FieldOfMiracles {
     Scanner scanner = new Scanner(System.in);
-    private String[] arrList = {"lucky", "storm", "beard"};
+    private String[] arrList = {"lucky", "storm", "hockey"};
     private int numHiddenWord = (int) (Math.random() * 3);
     private String hiddenWord = arrList[numHiddenWord];
     private int hiddenWordLength = hiddenWord.length();
@@ -31,20 +31,27 @@ public class FieldOfMiracles {
 
         while (hiddenWordLength != 0 || attempt != 0) {
             char hiddenLetter = scanner.next().charAt(0);
-
+            boolean isGuessLetter = false;
             for (int i = 0; i < hiddenWord.length(); i++) {
+
                 if (guessedTheLetter(hiddenLetter, hiddenWord.charAt(i), i)) {
                     hiddenWordLength--;
-                } else {
-                    attempt--;
-                    System.out.println("Не угадали. Попробуйте снова. У вас осталось " + attempt + " попыток.");
+                    isGuessLetter = true;
                 }
             }
-            if (attempt == 0) {
-                System.out.println("У Вас закончились попытки.");
+
+            if (!isGuessLetter) {
+                attempt--;
+                if (attempt == 0) {
+                    System.out.println("У Вас закончились попытки.");
+                    return;
+                }
+                System.out.println("Не угадали. Попробуйте снова. У вас осталось " + attempt + " попыток.");
             }
+
             if (hiddenWordLength == 0) {
                 System.out.println("Поздравляю Вы угадали слово!");
+                return;
             }
         }
     }
